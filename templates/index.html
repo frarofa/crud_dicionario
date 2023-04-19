@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!--Este template corresponde à página que mostrar uma listagem
 de todos os produtos cadastrados-->
     <div class="container mt-3">
@@ -15,19 +18,21 @@ de todos os produtos cadastrados-->
                     <th>Imagem</th>
                     <th></th>
                 </tr>
-            </thead>
             <tbody>
                 <!-- É preciso repetir a linha da tabela para cada
                 produto existente no dicionário -->
+                    {% for id, produto in produtos.items() %}
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><img src="" alt="thumbnail" class="img-thumbnail"></td>
+                        <td>{{ id }}</td>
+                        <td>{{ produto['nome'] }}</td>
+                        <td>{{ produto['descricao'] }}</td>
+                        <td>{{ produto['preco'] }}</td>
+                        <td><img src="{{ url_for('static', filename='img/' + produto['imagem']) }}" alt="thumbnail" class="img-thumbnail"></td>
                         <td><a href="">Editar</a></td>
                     </tr>
+                    {% endfor %}
                 
             </tbody>
         </table>
     </div>
+{% endblock %}

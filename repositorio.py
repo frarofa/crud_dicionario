@@ -1,4 +1,4 @@
-produtos =produtos = {
+produtos = {
     1: {
         "nome": "Iphone 14 PRO",
         "descricao": "Iphone 14, modelo PRO MAX, na cor vermelha",

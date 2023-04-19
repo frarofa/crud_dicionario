@@ -1,31 +1,41 @@
+<!-- a linha abaixo indica que o arquivo base.html deve ser renderizado antes deste -->
+{% extends 'base.html' %}
+
+
+
 <!-- Este template corresponde à página que o usuário acessa para
 cadastrar um novo produto ou editar um produto existente -->
+
+<!-- a marcação a seguir indica que esse conteúdo deve ser injetado na página base.html onde marcamos block content-->
+{% block content %}
     <h1>Cadastro de Produtos</h1>
     <form method="POST" enctype="multipart/form-data" action="" class="needs-validation" data-toggle="validator">
         <div class="form-group">
             <label for="id">ID:</label>
-            <input type="number" class="form-control" id="id" name="id" value="" required>
+            <input type="number" class="form-control" id="id" name="id" value="{{ id }}" required>
             <div class="invalid-feedback">Campo obrigatório.</div>
         </div>
         <div class="form-group">
             <label for="nome">Nome:</label>
-            <input type="text" class="form-control" id="nome" name="nome" value="" required>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{ nome }}" required>
             <div class="invalid-feedback">Campo obrigatório.</div>
         </div>
         <div class="form-group">
             <label for="raca">Descrição:</label>
-            <input type="text" class="form-control" id="descricao" name="descricao" value="" required>
+            <input type="text" class="form-control" id="descricao" name="descricao" value="{{ descricao }}" required>
             <div class="invalid-feedback">Campo obrigatório.</div>
         </div>
         <div class="form-group">
             <label for="casa">Preço:</label>
-            <input type="text" class="form-control" id="preco" name="preco" value="" required>
+            <input type="text" class="form-control" id="preco" name="preco" value="{{ preco }}" required>
             <div class="invalid-feedback">Campo obrigatório.</div>
         </div>
         <div class="form-group">
             <label for="imagem">Imagem:</label>
-            <input type="text" class="form-control" id="imagem" name="imagem" value="">
-            <img src="" style="max-width: 200px; max-height: 200px;">
+            <input type="text" class="form-control" id="imagem" name="imagem" value="{{ imagem }}">
+            {% if imagem %}
+            <img src="{{ url_for('static', filename='img/' + imagem) }}" style="max-width: 200px; max-height: 200px;">
+            {% endif %}
         </div>
         
       
@@ -38,3 +48,5 @@ cadastrar um novo produto ou editar um produto existente -->
        
 
     </form>
+<!-- aqui termina o block content -->
+{% endblock %}
